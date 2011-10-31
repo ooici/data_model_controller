@@ -1,0 +1,49 @@
+===========================================================
+Ocean Observatories Initiative Cyberinfrastructure (OOI CI)
+Integrated Observatory Network (ION)
+
+Data Model Controller - Python Data Process Framework
+https://confluence.oceanobservatories.org
+
+(C) UC Regents, 2010-2011
+===========================================================
+
+
+INSTALL
+=======
+
+You need the following installed before you can use pyon:
+  - python 2.7
+    - Download and use installer on a Mac
+    - If you need to build from source (like on some linux distributions), enable the following in the build:
+      - SSL
+      - sqlite
+  - distutils 2.7.2
+    - Download egg and execute with sh
+  - pip
+    - Use easy_install to install
+  - homebrew (Mac, optional)
+    - Install with: /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+  - virtualenv and virtualenvwrapper modules for your python 2.7 installation
+    - Use easy_install to install (pip may not work)
+    - May require XCode
+  - libevent 2.0
+    - This can easily be installed with Homebrew on a Mac or a package manager on linux.
+  - libyaml 0.1.4 
+    - You need the -dev or -devel version on linux. If you don't have such a package, use extern/setup-libyaml.sh.
+    - The Homebrew version on a mac is sufficient.
+  - zeromq 2.1.x
+    - The Homebrew version on a mac is sufficient.
+  - couchdb 0.8
+    - The Homebrew version on a mac is sufficient.
+
+Short version to setup a Mac (assumes python 2.7 is already setup):
+    brew install libevent libyaml zeromq couchdb
+
+Now setup a virtualenv with a command like the following (substitute your own name for "ion27"):
+    mkvirtualenv --no-site-packages --python=python2.7 ion27
+    workon ion27
+
+
+DEVELOPMENT TIME DEPENDENCIES
+=============================
