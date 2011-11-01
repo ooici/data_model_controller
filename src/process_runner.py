@@ -37,7 +37,7 @@ def get_opts():
 
 
 
-def main(ProcessControllerClass = DataProcessController):
+def main(ProcessControllerClass = DataModelController):
     """
     Execute the Data Process
     """
