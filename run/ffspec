@@ -1,0 +1,45 @@
+# The function specification defines 
+
+Function:
+  name: "Simple Example Function"
+  version: 0.1
+  module name: "PoSWtoolbox" # importable!
+  function: "psw.dens2" # function to call from import
+  input arguments: [temperature, salinity, pressure]
+  output arguments: [density]
+
+# Input arguments define structure of the argument type for the function as well as the scientific meaning of the data for cataloging and connection to stream metadata
+
+InputArguments: 
+  temperature:
+    type:
+      numeric array:
+        dimensions: 1
+        window: None
+    defined name: "In-situ Sea Water Temperature"
+    units: "degrees c"
+  salinity:
+    type:
+      numeric array:
+        dimensions: 1
+        window: None
+    defined name: "Sea Water Salinity"
+    units: PSU
+  pressure:
+    type:
+      numeric array:
+        dimensions: 1
+        window: None
+    defined name: Pressure
+    units: decibars
+
+OutputArguments:
+  density:
+    type:
+      numeric array:
+        dimensions: 1
+        window: None
+  defined name: "In-situ Sea Water Density"
+  units: kg/m^3
+
+

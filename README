@@ -47,3 +47,11 @@ Now setup a virtualenv with a command like the following (substitute your own na
 
 DEVELOPMENT TIME DEPENDENCIES
 =============================
+
+
+TO RUN THE CODE:
+=================
+$ ./run_dmc -i ./run/input -o ./run/output -d ./run/fdata -f ./run/ffspec -l ./run/tlog
+Initializing...
+Running...
+Finishing...

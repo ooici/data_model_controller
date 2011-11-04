@@ -5,8 +5,9 @@
 @author David Stuebe <dstuebe@asascience.com>
 @brief Base Class for process execution
 """
+import yaml
 
-from src.model_view_generator import ModelViewGenerator
+from model_view_generator import ModelViewGenerator
 
 class DataProcessException(Exception):
     """
@@ -39,6 +40,9 @@ class DataModelController(object):
         self.mvg            = None
         self.results        = None
 
+        # TODO - setup logging facility
+
+        
 
     def initialize(self):
         """
@@ -58,14 +62,14 @@ class DataModelController(object):
         # Add the supplement to the data model
         self.mvg.add_packet(self.finput)
 
-        # Generate the function input arguments as a view of the model
-        kwargs = self.mvg.generate_input_view(self.input_model)
-
         datafunc = self._get_data_function()
 
-        # Run the function
-        self.results = datafunc(**kwargs)
-        ## Add try catch to handle invalid data model for function input
+        # Generate the function input arguments as a view of the model
+        for kwargs in self.mvg.generate_input_view(self.input_model):
+
+            # Run the function
+            self.results = datafunc(**kwargs)
+            ## Add try catch to handle invalid data model for function input
 
 
     def finish(self):
@@ -86,6 +90,9 @@ class DataModelController(object):
         """
         Read the Yaml object and import the data function
         """
+        stream = open(self.ffspec)
+        fspec = yaml.load(stream)
+
 
     def _get_data_function(self):
         """
@@ -94,7 +101,8 @@ class DataModelController(object):
 
         def func():
             """
-            A dummy data function
+            Dummy Function
+            A default data function
             """
             return None
 

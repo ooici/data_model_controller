@@ -8,8 +8,8 @@
 
 import sys
 import optparse
-
-from src.data_model_controller import DataModelController, DataProcessException
+import os
+from data_model_controller import DataModelController, DataProcessException
 
 def get_opts():
     """
@@ -24,17 +24,25 @@ def get_opts():
     p.add_option("-f", "--datafuncspec",    action="store", dest="ffspec",  help="The yaml file object which specifies the data function and the model inputs and outputs")
     p.add_option("-l", "--logfile",         action="store", dest="flog",    help="Path to the file where logs should be placed.")
 
-    p.set_defaults(finput=None, foutput=None, fdata=None, ffspec=None, flog=None)
+    p.set_defaults(finput='', foutput='', fdata='', ffspec='', flog='')
     opts, args = p.parse_args()
-
-    print 'opts:',opts
-    print 'args:',args
 
     ## Validate that all input file name arguments are valid
 
+    # These must exist
+    assert os.path.exists(opts.finput), 'Input data file must exist'
+    assert os.path.exists(opts.ffspec), 'Function Specification file must exist'
+
+    # These may exist
+    path, fname = os.path.split(opts.fdata)
+    assert os.path.isdir(path), 'Invalid path for process data file'
+    assert fname, 'Invalid data file name'
+
+    path, fname = os.path.split(opts.flog)
+    assert os.path.isdir(path), 'Invalid path for process log file'
+    assert fname, 'Invalid log file name'
 
     return vars(opts) # Make the result a dictionary not a Values Instance
-
 
 
 def main(ProcessControllerClass = DataModelController):
